@@ -1,0 +1,25 @@
+/*Start at bottom-left:
+row = last row
+col = 0
+Compare matrix[row][col] with target:
+If greater → move up (row--)
+If smaller → move right (col++)
+If equal → found ✅
+Repeat until:
+row < 0 (moved above the matrix)
+OR col >= matrix[0].length (moved past the last column)
+If the loop ends, return false.*/
+class Solution {
+    public boolean searchMatrix(int[][] matrix, int target) {
+        int row = matrix.length-1;
+        int col = 0;
+        while(row>=0 && col<matrix[0].length)
+        {
+            if(matrix[row][col]>target)row--;
+            else if(matrix[row][col]<target)col++;
+            else return true;
+
+        }
+        return false;
+    }
+}
