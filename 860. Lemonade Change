@@ -1,0 +1,33 @@
+class Solution {
+    public boolean lemonadeChange(int[] bills) {
+        int five = 0; // count of $5
+        int ten = 0;  // count of $10
+
+        for (int bill : bills) {
+            
+            if (bill == 5) {
+                five++; // keep $5
+            } 
+            
+            else if (bill == 10) {
+                if (five == 0) return false; // need one $5
+                five--;
+                ten++;
+            } 
+            
+            else { // bill == 20
+                if (ten > 0 && five > 0) { // give $10 + $5
+                    ten--;
+                    five--;
+                } 
+                else if (five >= 3) { // give three $5
+                    five -= 3;
+                } 
+                else {
+                    return false; // cannot give change
+                }
+            }
+        }
+        return true;
+    }
+}
