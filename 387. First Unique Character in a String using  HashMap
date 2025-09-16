@@ -1,0 +1,23 @@
+import java.util.*;
+
+class Solution {
+    public int firstUniqChar(String s) {
+        Map<Character,Integer> fq = new HashMap<>();
+        for (char ele : s.toCharArray()) {
+            if(fq.containsKey(ele)) 
+            {
+                fq.put(ele,fq.get(ele)+1);
+            }
+            else
+            {
+                fq.put(ele,1);
+            }
+        }
+        for (int i = 0; i < s.length(); i++) {
+            if (fq.get(s.charAt(i)) == 1) {
+                return i;
+            }
+        }  
+        return -1;
+    }
+}
